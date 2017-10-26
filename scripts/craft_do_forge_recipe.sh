@@ -1,23 +1,14 @@
 #!/bin/bash
-##############################################################
-#                                                            #
-#     Digital Ocean / Forge Recipe for CraftCMS websites     #
-#                                                            #
-#============================================================#
-#                                                            #
-#  Assumptions:                                              #
-#                                                            #
-#  - Ubuntu 16.04 Digital Ocean droplet, created by Forge    #
-#  - You are running this recipe as root                     #
-#                                                            #
-#============================================================#
-#                                                            #
-#  References & Credits:                                     #
-#                                                            #
-#  Thanks to Andrew Welch & @nystudio107 folks. This recipe  #
-#  rely heavily on their articles.                           #
-#                                                            #
-##############################################################
+
+# Craft CMS Server Setup 
+#
+# Forge Bash Script Recipe for CraftCMS websites on Digital Ocean
+#
+# @author    webrgp
+# @link      https://github.com/webrgp
+# @package   craft-do-forge-recipe
+# @since     1.0.0
+# @license   MIT
 
 # Exit immediately if a simple command exits with a non-zero status (https://ss64.com/bash/set.html) 
 set -e
@@ -69,7 +60,7 @@ We are unable to find either "sudo" or "su" available to make this happen.'
   success_msg "Woot! User is root :-)"
 
   # Install Digital Ocean Monitoring tools
-  # curl -sSL https://agent.digitalocean.com/install.sh | bash
+  # curl -sSL https://agent.digitalocean.com/install.sh | sh
 
   patch_mysql
 
