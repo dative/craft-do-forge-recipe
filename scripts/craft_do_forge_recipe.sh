@@ -13,21 +13,11 @@
 # Exit immediately if a simple command exits with a non-zero status (https://ss64.com/bash/set.html) 
 set -e
 
-error_msg () {
-  echo -e "\e[1;31m*** Error:\e[0m $1"
-}
-
-success_msg () {
-  echo -e "\e[32m*** $1\e[0m"
-}
-
-info_msg () {
-  echo -e "\e[34m*** $1\e[0m"
-}
-
-print_msg () {
-  echo -e ">> $1"
-}
+# Helper functions
+error_msg () { echo -e "\e[1;31m*** Error:\e[0m $1"; }
+success_msg () { echo -e "\e[32m*** $1\e[0m"; }
+info_msg () { echo -e "\e[34m*** $1\e[0m"; }
+print_msg () { echo -e ">> $1"; }
 
 
 # Install Digital Ocean Monitoring tools
@@ -84,17 +74,15 @@ We are unable to find either "sudo" or "su" available to make this happen.'
 
   success_msg "Woot! User is root :-)"
 
+  # Install Steps
   patch_mysql
-
   install_imager_req
-
   install_nginx_partials
-
   install_do_monitoring_tools
 
   success_msg "CraftCMS setup on Forge completed!"
 }
 
-info_msg "Installing CraftCMS setup on Forge"
+info_msg "Start CraftCMS setup on Forge"
 
 perform_craftcms_server_setup
