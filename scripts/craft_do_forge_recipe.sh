@@ -29,10 +29,12 @@ print_msg () {
   echo -e ">> $1"
 }
 
+
 # Install Digital Ocean Monitoring tools
 install_do_monitoring_tools () {
   curl -sSL https://agent.digitalocean.com/install.sh | sh
 }
+
 
 # Fix MySql 5.7.5+ issue ( https://craftcms.stackexchange.com/questions/12084/getting-this-sql-error-group-by-incompatible-with-sql-mode-only-full-group-by/12106 )
 patch_mysql () {
@@ -51,6 +53,14 @@ EOT
 }
 
 
+# Install jpegoptim & optipng ( https://nystudio107.com/blog/creating-optimized-images-in-craft-cms )
+install_imager_req () {
+  type jpegoptim >/dev/null 2>&1 || { print_msg "Installing jpegoptim"; apt-get -y install jpegoptim; }
+  type optipng >/dev/null 2>&1 || { print_msg "Installing optipng"; apt-get -y install optipng; }
+  success_msg "jpegoptim & optipng installed!"
+}
+
+
 perform_craftcms_server_setup () {
 
   # Check if the user is root
@@ -65,6 +75,8 @@ We are unable to find either "sudo" or "su" available to make this happen.'
   success_msg "Woot! User is root :-)"
 
   patch_mysql
+
+  install_imager_req
 
   install_do_monitoring_tools
 
