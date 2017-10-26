@@ -54,9 +54,14 @@ install_imager_req () {
 # Install the nginx partials from https://github.com/nystudio107/nginx-craft
 install_nginx_partials () {
 
-  git clone https://github.com/nystudio107/nginx-craft.git nginx-craft;
-  cp -R nginx-craft/nginx-partials /etc/nginx;
-  rm -rf nginx-craft;
+  if [ ! -d "/etc/nginx/nginx-partials" ]; then
+    print_msg "Installing nginx-partials"
+    git clone https://github.com/nystudio107/nginx-craft.git nginx-craft;
+    cp -R nginx-craft/nginx-partials /etc/nginx;
+    rm -rf nginx-craft;
+  fi
+
+  success_msg "nginx-partials installed!"
 
 }
 
