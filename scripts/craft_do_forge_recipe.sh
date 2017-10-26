@@ -29,6 +29,11 @@ print_msg () {
   echo -e ">> $1"
 }
 
+# Install Digital Ocean Monitoring tools
+install_do_monitoring_tools () {
+  curl -sSL https://agent.digitalocean.com/install.sh | sh
+}
+
 # Fix MySql 5.7.5+ issue ( https://craftcms.stackexchange.com/questions/12084/getting-this-sql-error-group-by-incompatible-with-sql-mode-only-full-group-by/12106 )
 patch_mysql () {
   info_msg "Start fix for MySql 5.7.5+ issue"
@@ -59,31 +64,11 @@ We are unable to find either "sudo" or "su" available to make this happen.'
 
   success_msg "Woot! User is root :-)"
 
-  # Install Digital Ocean Monitoring tools
-  # curl -sSL https://agent.digitalocean.com/install.sh | sh
-
   patch_mysql
 
-  # # Create a playground directory to be remove at the end
-  # mkdir ~/playground
-  # cd ~/playground
+  install_do_monitoring_tools
 
-  # # Maker sure you have tools in place
-  # apt-get -y install autoconf automake libtool nasm make pkg-config git
-
-  # # Install jpegoptim & optipng ( https://nystudio107.com/blog/creating-optimized-images-in-craft-cms )
-  # apt-get -y install jpegoptim
-  # apt-get -y install optipng
-
-  # # Install the nginx partials from https://github.com/nystudio107/nginx-craft
-
-  # git clone https://github.com/nystudio107/nginx-craft.git nginx-craft
-
-  # cp -R nginx-craft/nginx-partials /etc/nginx
-
-  # # Clean up playground
-  # cd ~
-  # rm -rf ~/playground
+  success_msg "CraftCMS setup on Forge completed!"
 }
 
 info_msg "Installing CraftCMS setup on Forge"
