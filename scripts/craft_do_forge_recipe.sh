@@ -61,6 +61,16 @@ install_imager_req () {
 }
 
 
+# Install the nginx partials from https://github.com/nystudio107/nginx-craft
+install_nginx_partials () {
+
+  git clone https://github.com/nystudio107/nginx-craft.git nginx-craft;
+  cp -R nginx-craft/nginx-partials /etc/nginx;
+  rm -rf nginx-craft;
+
+}
+
+
 perform_craftcms_server_setup () {
 
   # Check if the user is root
@@ -77,6 +87,8 @@ We are unable to find either "sudo" or "su" available to make this happen.'
   patch_mysql
 
   install_imager_req
+
+  install_nginx_partials
 
   install_do_monitoring_tools
 
